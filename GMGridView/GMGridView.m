@@ -1499,6 +1499,8 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 {
     CGPoint previousContentOffset = self.contentOffset;
     
+    [self setSubviewsCacheAsInvalid];
+
     [[self itemSubviews] enumerateObjectsUsingBlock:^(id obj, NSUInteger index, BOOL *stop)
     {
         if ([obj isKindOfClass:[GMGridViewCell class]]) 
@@ -1510,8 +1512,6 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     
     self.firstPositionLoaded = GMGV_INVALID_POSITION;
     self.lastPositionLoaded  = GMGV_INVALID_POSITION;
-    
-    [self setSubviewsCacheAsInvalid];
     
     NSUInteger numberItems = [self.dataSource numberOfItemsInGMGridView:self];    
     _itemSize = [self.dataSource GMGridView:self sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
