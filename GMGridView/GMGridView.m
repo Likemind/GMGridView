@@ -1520,7 +1520,9 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     [self recomputeSizeAnimated:NO];
     
     CGPoint newContentOffset = CGPointMake(MIN(_maxPossibleContentOffset.x, previousContentOffset.x), MIN(_maxPossibleContentOffset.y, previousContentOffset.y));
-    newContentOffset = CGPointMake(MAX(newContentOffset.x, _minPossibleContentOffset.x), MAX(newContentOffset.y, _minPossibleContentOffset.y));
+
+//  leave the content offset, even if its < 0 (otherwise doesn't work well with pull-to-reload pattern)
+//	newContentOffset = CGPointMake(MAX(newContentOffset.x, _minPossibleContentOffset.x), MAX(newContentOffset.y, _minPossibleContentOffset.y));
     
     self.contentOffset = newContentOffset;
     
